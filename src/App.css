@@ -44,6 +44,10 @@ h1 {
   border-radius: 8px;
   margin-bottom: 12px;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
 }
 
 button {

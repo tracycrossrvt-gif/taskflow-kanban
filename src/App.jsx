@@ -29,8 +29,6 @@ function App() {
       title: "New Task",
     };
 
-  
-
     const updatedColumns = columns.map((column) => {
       if (column.id === columnId) {
         return {
@@ -46,32 +44,47 @@ function App() {
   }
 
   function editCard(columnId, cardId) {
-  const newTitle = prompt("Edit card title:");
+    const newTitle = prompt("Edit card title:");
 
-  if (!newTitle) return;
+    if (!newTitle) return;
 
-  const updatedColumns = columns.map((column) => {
-    if (column.id === columnId) {
-      return {
-        ...column,
-        cards: column.cards.map((card) => {
-          if (card.id === cardId) {
-            return {
-              ...card,
-              title: newTitle,
-            };
-          }
+    const updatedColumns = columns.map((column) => {
+      if (column.id === columnId) {
+        return {
+          ...column,
+          cards: column.cards.map((card) => {
+            if (card.id === cardId) {
+              return {
+                ...card,
+                title: newTitle,
+              };
+            }
 
-          return card;
-        }),
-      };
-    }
+            return card;
+          }),
+        };
+      }
 
-    return column;
-  });
+      return column;
+    });
 
-  setColumns(updatedColumns);
-}
+    setColumns(updatedColumns);
+  }
+
+  function deleteCard(columnId, cardId) {
+    const updatedColumns = columns.map((column) => {
+      if (column.id === columnId) {
+        return {
+          ...column,
+          cards: column.cards.filter((card) => card.id !== cardId),
+        };
+      }
+
+      return column;
+    });
+
+    setColumns(updatedColumns);
+  }
 
   return (
     <main className="app">
@@ -85,13 +98,22 @@ function App() {
             <h2>{column.title}</h2>
 
             {column.cards.map((card) => (
-             <div
-  className="card"
-  key={card.id}
-  onClick={() => editCard(column.id, card.id)}
->
-  {card.title}
-</div> 
+              <div
+                className="card"
+                key={card.id}
+                onClick={() => editCard(column.id, card.id)}
+              >
+                <span>{card.title}</span>
+
+                <button
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    deleteCard(column.id, card.id);
+                  }}
+                >
+                  ✕
+                </button>
+              </div>
             ))}
 
             <button onClick={() => addCard(column.id)}>+ Add Card</button>

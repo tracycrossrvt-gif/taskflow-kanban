@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Card from "./components/Card";
+import Column from "./components/Column";
 
 
 
@@ -124,23 +125,16 @@ function resetBoard() {
 </button>
 
       <section className="board">
-        {columns.map((column) => (
-          <div className="column" key={column.id}>
-            <h2>{column.title}</h2>
-
-           {column.cards.map((card) => (
-  <Card
-    key={card.id}
-    card={card}
-    columnId={column.id}
+       {columns.map((column) => (
+  <Column
+    key={column.id}
+    column={column}
+    addCard={addCard}
     editCard={editCard}
     deleteCard={deleteCard}
   />
 ))} 
-
-            <button onClick={() => addCard(column.id)}>+ Add Card</button>
-          </div>
-        ))}
+      
       </section>
     </main>
   );

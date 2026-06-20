@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Card from "./components/Card";
 import Column from "./components/Column";
+import { DndContext } from "@dnd-kit/core";
 
 
 
@@ -114,6 +115,13 @@ function resetBoard() {
   window.location.reload();
 }  
 
+function handleDragEnd(event) {
+  const { active, over } = event;
+
+  console.log("Dragged Card:", active.id);
+  console.log("Dropped On:", over?.id);
+}
+
   return (
     <main className="app">
       <h1>TaskFlow Kanban</h1>
@@ -124,7 +132,8 @@ function resetBoard() {
   Reset Board
 </button>
 
-      <section className="board">
+      <DndContext onDragEnd={handleDragEnd}>
+  <section className="board">
        {columns.map((column) => (
   <Column
     key={column.id}
@@ -136,6 +145,7 @@ function resetBoard() {
 ))} 
       
       </section>
+      </DndContext>
     </main>
   );
 }

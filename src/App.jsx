@@ -45,7 +45,7 @@ useEffect(() => {
   function addCard(columnId) {
     const cardTitle = prompt("Enter card title:");
 
-if (!cardTitle) return;
+    if (!cardTitle?.trim()) return;
 
     const newCard = {
       id: crypto.randomUUID(),
@@ -69,7 +69,7 @@ if (!cardTitle) return;
   function editCard(columnId, cardId) {
     const newTitle = prompt("Edit card title:");
 
-    if (!newTitle) return;
+    if (!newTitle?.trim()) return;
 
     const updatedColumns = columns.map((column) => {
       if (column.id === columnId) {
@@ -95,8 +95,10 @@ if (!cardTitle) return;
   }
 
   function deleteCard(columnId, cardId) {
-    console.log("Deleting:", cardId);
-    
+   if (!window.confirm("Delete this card?")) {
+  return;
+}
+
     const updatedColumns = columns.map((column) => {
       if (column.id === columnId) {
         return {
@@ -158,9 +160,15 @@ function handleDragEnd(event) {
   setColumns(updatedColumns);
 }
 
+const totalTasks = columns.reduce(
+  (total, column) => total + column.cards.length,
+  0
+);
+
   return (
     <main className="app">
       <h1>TaskFlow Kanban</h1>
+      <p>Total Tasks: {totalTasks}</p>
 
       <button onClick={() => console.log(columns)}>Log Columns</button>
 

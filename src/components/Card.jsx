@@ -13,22 +13,32 @@ function Card({ card, columnId, editCard, deleteCard }) {
 
   return (
     <div ref={setNodeRef} style={style} className="card">
-      <span
-        onClick={() => editCard(columnId, card.id)}
-        {...listeners}
-        {...attributes}
-      >
-        {card.title}
-      </span>
+      <span className="card__title">{card.title}</span>
 
-      <button
-        onClick={(event) => {
-          event.stopPropagation();
-          deleteCard(columnId, card.id);
-        }}
-      >
-        ✕
-      </button>
+      <div className="card__actions">
+        <button
+          type="button"
+          onClick={() => editCard(columnId, card.id)}
+        >
+          Edit
+        </button>
+
+        <button
+          type="button"
+          onClick={() => deleteCard(columnId, card.id)}
+        >
+          ✕
+        </button>
+
+        <button
+          type="button"
+          className="card__drag-handle"
+          {...listeners}
+          {...attributes}
+        >
+          ⠿
+        </button>
+      </div>
     </div>
   );
 }

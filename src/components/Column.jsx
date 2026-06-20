@@ -10,7 +10,13 @@ const { setNodeRef } = useDroppable({
 
     return (
        <div className="column" ref={setNodeRef}>
-      <h2>{column.title}</h2>
+      <h2>
+  {column.title} ({column.cards.length})
+</h2>
+
+     {column.cards.length === 0 && (
+  <p>No cards yet</p>
+)} 
 
       {column.cards.map((card) => (
         <Card

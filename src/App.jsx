@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import Card from "./components/Card";
 
 
 
@@ -43,9 +44,10 @@ useEffect(() => {
     const cardTitle = prompt("Enter card title:");
 
 if (!cardTitle) return;
+
     const newCard = {
       id: crypto.randomUUID(),
-     title: prompt("Enter card title:"), 
+     title: cardTitle, 
     };
 
     const updatedColumns = columns.map((column) => {
@@ -126,24 +128,15 @@ function resetBoard() {
           <div className="column" key={column.id}>
             <h2>{column.title}</h2>
 
-            {column.cards.map((card) => (
-              <div
-                className="card"
-                key={card.id}
-                onClick={() => editCard(column.id, card.id)}
-              >
-                <span>{card.title}</span>
-
-                <button
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    deleteCard(column.id, card.id);
-                  }}
-                >
-                  ✕
-                </button>
-              </div>
-            ))}
+           {column.cards.map((card) => (
+  <Card
+    key={card.id}
+    card={card}
+    columnId={column.id}
+    editCard={editCard}
+    deleteCard={deleteCard}
+  />
+))} 
 
             <button onClick={() => addCard(column.id)}>+ Add Card</button>
           </div>

@@ -1,8 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
+
+
 function App() {
-  const [columns, setColumns] = useState([
+  const STORAGE_KEY = "taskflow-columns";
+
+  const [columns, setColumns] = useState(() => {
+  const savedColumns = localStorage.getItem(STORAGE_KEY);
+
+  if (savedColumns) {
+    return JSON.parse(savedColumns);
+  }
+
+  return [
     {
       id: "todo",
       title: "To Do",
@@ -21,12 +32,20 @@ function App() {
       title: "Done",
       cards: [{ id: "card-4", title: "Install Vite" }],
     },
-  ]);
+  ];
+});
+
+useEffect(() => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(columns));
+}, [columns]);
 
   function addCard(columnId) {
+    const cardTitle = prompt("Enter card title:");
+
+if (!cardTitle) return;
     const newCard = {
       id: crypto.randomUUID(),
-      title: "New Task",
+     title: prompt("Enter card title:"), 
     };
 
     const updatedColumns = columns.map((column) => {
@@ -80,17 +99,27 @@ function App() {
         };
       }
 
+
       return column;
     });
 
     setColumns(updatedColumns);
   }
 
+function resetBoard() {
+  localStorage.removeItem(STORAGE_KEY);
+  window.location.reload();
+}  
+
   return (
     <main className="app">
       <h1>TaskFlow Kanban</h1>
 
       <button onClick={() => console.log(columns)}>Log Columns</button>
+
+      <button onClick={resetBoard}>
+  Reset Board
+</button>
 
       <section className="board">
         {columns.map((column) => (

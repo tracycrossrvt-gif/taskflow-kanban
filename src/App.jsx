@@ -170,11 +170,6 @@ const totalTasks = columns.reduce(
       <h1>TaskFlow Kanban</h1>
       <p>Total Tasks: {totalTasks}</p>
 
-      <button onClick={() => console.log(columns)}>Log Columns</button>
-
-      <button onClick={resetBoard}>
-  Reset Board
-</button>
 
       <DndContext onDragEnd={handleDragEnd}>
   <section className="board">
@@ -190,6 +185,14 @@ const totalTasks = columns.reduce(
       
       </section>
       </DndContext>
+      <footer className="footer">
+  <button
+    className="footer__reset"
+    onClick={resetBoard}
+  >
+    Reset  Board
+  </button>
+</footer>
     </main>
   );
 }

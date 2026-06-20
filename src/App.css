@@ -81,3 +81,23 @@ button {
   color: #111827;
   font-size: 16px;
 }
+
+/* FOOTER */
+
+.footer {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.footer__reset {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+
+.footer__reset:hover {
+  color: white;
+}

@@ -95,6 +95,8 @@ if (!cardTitle) return;
   }
 
   function deleteCard(columnId, cardId) {
+    console.log("Deleting:", cardId);
+    
     const updatedColumns = columns.map((column) => {
       if (column.id === columnId) {
         return {
@@ -118,8 +120,42 @@ function resetBoard() {
 function handleDragEnd(event) {
   const { active, over } = event;
 
-  console.log("Dragged Card:", active.id);
-  console.log("Dropped On:", over?.id);
+  if (!over) return;
+
+  const cardId = active.id;
+  const targetColumnId = over.id;
+
+  let movedCard = null;
+
+  const columnsWithoutMovedCard = columns.map((column) => {
+    const cardToMove = column.cards.find((card) => card.id === cardId);
+
+    if (cardToMove) {
+      movedCard = cardToMove;
+
+      return {
+        ...column,
+        cards: column.cards.filter((card) => card.id !== cardId),
+      };
+    }
+
+    return column;
+  });
+
+  if (!movedCard) return;
+
+  const updatedColumns = columnsWithoutMovedCard.map((column) => {
+    if (column.id === targetColumnId) {
+      return {
+        ...column,
+        cards: [...column.cards, movedCard],
+      };
+    }
+
+    return column;
+  });
+
+  setColumns(updatedColumns);
 }
 
   return (

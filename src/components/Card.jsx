@@ -12,15 +12,14 @@ function Card({ card, columnId, editCard, deleteCard }) {
     : undefined;
 
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      className="card"
-      onClick={() => editCard(columnId, card.id)}
-      {...listeners}
-      {...attributes}
-    >
-      <span>{card.title}</span>
+    <div ref={setNodeRef} style={style} className="card">
+      <span
+        onClick={() => editCard(columnId, card.id)}
+        {...listeners}
+        {...attributes}
+      >
+        {card.title}
+      </span>
 
       <button
         onClick={(event) => {

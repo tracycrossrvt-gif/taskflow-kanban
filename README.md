@@ -1,56 +1,57 @@
-# TaskFlow Kanban
+# TaskFlow — Kanban Task Management
 
-A Trello-inspired Kanban board built with React and Vite.
+**[Live Demo](https://taskflow-kanban-woad.vercel.app/)** · **[Source Code](https://github.com/tracycrossrvt-gif/taskflow-kanban)**
 
-## Live Demo
+TaskFlow is a React-based Kanban board for organizing work through a clear, interactive workflow. Users can create and update tasks, move them between stages, and return to their board without losing their changes.
 
-https://taskflow-kanban-lb8l6dzz1-mothy-media.vercel.app/
+## What it does
 
-## Features
+- **Manage tasks:** Create, edit, and delete task cards.
+- **Move work forward:** Drag and drop cards between workflow columns.
+- **Keep work visible:** View task counts and board statistics, with messaging for empty states.
+- **Preserve progress:** Save board data locally with `localStorage` across browser sessions.
+- **Restart the demo:** Reset the board to its demonstration state.
 
-* Create task cards
-* Edit task cards
-* Delete task cards
-* Drag and drop cards between columns
-* Persistent data with localStorage
-* Empty state messaging
-* Task statistics and card counts
-* Reset demo board functionality
+## Technical implementation
 
-## Technologies Used
+Built with **React, JavaScript, CSS, and Vite**, using **dnd-kit** for drag-and-drop interactions. The UI uses React state and effects to manage task updates and persistence, while derived values keep board counts in sync with the underlying tasks.
 
-* React
-* Vite
-* JavaScript
-* CSS
-* dnd-kit
-* localStorage
+The board is intentionally client-side: it does **not** currently require an account or a remote database. This makes the experience easy to explore, though data is specific to the user's browser rather than synchronized across devices.
 
-## What I Learned
+## Tech stack
 
-This project focused on building and managing complex application state in React.
+- **Frontend:** React, JavaScript, CSS
+- **Build tooling:** Vite, ESLint
+- **Interaction:** `@dnd-kit/core`, `@dnd-kit/sortable`
+- **Persistence:** Browser `localStorage`
+- **Deployment:** Vercel
 
-Key concepts practiced:
+## Run locally
 
-* React component architecture
-* CRUD operations
-* State management with useState
-* Side effects with useEffect
-* Drag-and-drop interfaces with dnd-kit
-* Local storage persistence
-* Array methods including map, filter, find, and reduce
-* Derived state calculations
+```bash
+npm install
+npm run dev
+```
 
-## Future Improvements
+To run project checks:
 
-* Priority labels
-* Due dates
-* Multiple boards
-* Firebase integration
-* User authentication
-* Mobile enhancements
+```bash
+npm run lint
+npm run build
+```
 
-## Author
+## Future improvements
 
-Tracy Cross
-Frontend Developer
+The following are ideas for later iterations, **not current features**:
+
+- Refine card styling, spacing, and visual hierarchy
+- Add priority labels and due dates
+- Support multiple boards
+- Explore optional authentication and cross-device synchronization
+- Continue refining mobile interactions and accessibility
+
+## Developer
+
+**Tracy Cross** — Software Developer
+
+[Portfolio](https://dev-portfolio-woad-seven.vercel.app/) · [LinkedIn](https://www.linkedin.com/in/tracy-cross-dev/) · [GitHub](https://github.com/tracycrossrvt-gif)

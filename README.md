@@ -1,4 +1,4 @@
-# TaskFlow — Kanban Task Management
+# TaskFlow - Kanban Task Management
 
 **[Live Demo](https://taskflow-kanban-woad.vercel.app/)** · **[Source Code](https://github.com/tracycrossrvt-gif/taskflow-kanban)**
 
@@ -52,6 +52,6 @@ The following are ideas for later iterations, **not current features**:
 
 ## Developer
 
-**Tracy Cross** — Software Developer
+**Tracy Cross** - Product Manager
 
 [Portfolio](https://dev-portfolio-woad-seven.vercel.app/) · [LinkedIn](https://www.linkedin.com/in/tracy-cross-dev/) · [GitHub](https://github.com/tracycrossrvt-gif)
